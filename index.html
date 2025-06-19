@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MentalCare - Platform Kesehatan Mental</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #0ea5e9, #6366f1);
+        }
+        
+        .blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(60px);
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Animated Background Blobs -->
+    <div class="blob animate-float w-64 h-64 bg-primary-400 top-20 left-20"></div>
+    <div class="blob animate-float animation-delay-2000 w-80 h-80 bg-indigo-400 bottom-20 right-20"></div>
+    
+    <!-- Navbar Modern -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <span class="text-2xl gradient-text text-3xl">🧠</span>
+                        <span class="text-xl font-bold gradient-text">MentalCare</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-primary-600 hover:text-primary-800 transition-colors font-medium relative group">
+                        Beranda
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#tentang" class="text-gray-600 hover:text-primary-600 transition-colors font-medium relative group">
+                        Tentang
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#artikel" class="text-gray-600 hover:text-primary-600 transition-colors font-medium relative group">
+                        Artikel
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#testimoni" class="text-gray-600 hover:text-primary-600 transition-colors font-medium relative group">
+                        Testimoni
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#jadwal" class="text-gray-600 hover:text-primary-600 transition-colors font-medium relative group">
+                        Konsultasi
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#jadwal" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-transform">
+                        Jadwalkan Konsultasi
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-primary-600 focus:outline-none transition-colors">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path id="hamburger-icon" d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            <path id="close-icon" d="M6 18L18 6M6 6l12 12" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-primary-600 bg-primary-50">Beranda</a>
+                <a href="#tentang" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-primary-50">Tentang</a>
+                <a href="#artikel" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-primary-50">Artikel</a>
+                <a href="#testimoni" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-primary-50">Testimoni</a>
+                <a href="#jadwal" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-primary-50">Konsultasi</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="w-full space-y-3 px-5">
+                    <a href="#jadwal" class="w-full flex items-center justify-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium shadow-md hover:shadow-lg">
+                        Jadwalkan Konsultasi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Floating Animation -->
+    <section id="home" class="relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <p class="text-primary-600 font-medium mb-3 animate-pulse-slow">Platform Kesehatan Mental Terpercaya</p>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="text-gray-900">Jaga Kesehatan Mental</span>
+                        <span class="gradient-text">Anda dengan Ahli</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg">
+                        Kami menyediakan layanan konsultasi dengan psikolog profesional untuk membantu Anda mengatasi masalah mental dan mencapai kehidupan yang lebih seimbang.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#jadwal" class="px-8 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-transform">
+                            Jadwalkan Konsultasi
+                        </a>
+                        <a href="#tentang" class="px-8 py-3 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-colors transform hover:-translate-y-0.5 transition-transform">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                    <div class="mt-10 flex items-center space-x-6">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/women/12.jpg" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Client">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Client">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Client">
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Bergabung dengan <span class="font-bold text-primary-600">500+</span> klien yang puas</p>
+                            <div class="flex items-center mt-1">
+                                <i class="fas fa-star text-amber-400"></i>
+                                <i class="fas fa-star text-amber-400"></i>
+                                <i class="fas fa-star text-amber-400"></i>
+                                <i class="fas fa-star text-amber-400"></i>
+                                <i class="fas fa-star text-amber-400"></i>
+                                <span class="ml-2 text-sm text-gray-600">5.0 (200+ ulasan)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-fade-in">
+                    <img src="https://images.unsplash.com/photo-1593814681464-eef5af2b0628?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ilustrasi Kesehatan Mental" class="w-full max-w-md mx-auto lg:max-w-none rounded-2xl shadow-xl transform transition hover:scale-105 duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Section -->
+    <section id="tentang" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-primary-100 text-primary-800 mb-4 animate-bounce">Tentang Kami</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Memahami Kesehatan Mental</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Kesehatan mental adalah bagian integral dari kesejahteraan hidup yang memengaruhi cara kita berpikir, merasa, dan bertindak.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-1 md:order-2 animate-fade-in">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-primary-400 to-indigo-500 rounded-2xl opacity-20 blur"></div>
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Tentang Kesehatan Mental" class="relative rounded-2xl shadow-lg w-full transform transition hover:scale-105 duration-500">
+                    </div>
+                </div>
+                <div class="order-2 md:order-1 animate-slide-up">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Apa Itu Kesehatan Mental?</h3>
+                    <p class="text-gray-600 mb-6">Kesehatan mental mencakup kesejahteraan emosional, psikologis, dan sosial kita. Ini memengaruhi bagaimana kita berpikir, merasakan, dan bertindak ketika menghadapi kehidupan.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start bg-gray-50 p-4 rounded-lg transition hover:bg-primary-50">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-gray-600">Membantu mengelola stres dan tantangan hidup</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start bg-gray-50 p-4 rounded-lg transition hover:bg-primary-50">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-gray-600">Meningkatkan produktivitas dan kontribusi kepada masyarakat</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start bg-gray-50 p-4 rounded-lg transition hover:bg-primary-50">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-gray-600">Membentuk hubungan yang bermakna dengan orang lain</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-indigo-400 to-primary-500 rounded-2xl opacity-20 blur"></div>
+                        <img src="https://images.unsplash.com/photo-1530099486328-e021101a494a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80" alt="Pentingnya Kesehatan Mental" class="relative rounded-2xl shadow-lg w-full transform transition hover:scale-105 duration-500">
+                    </div>
+                </div>
+                <div class="animate-slide-up">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Mengapa Kesehatan Mental Penting?</h3>
+                    <p class="text-gray-600 mb-6">Kesehatan mental yang baik membantu kita menghadapi tekanan hidup, bekerja secara produktif, dan memberikan kontribusi yang berarti kepada komunitas kita.</p>
+                    <div class="bg-gradient-to-r from-primary-50 to-indigo-50 rounded-2xl p-6 border border-primary-100 transform transition hover:scale-[1.01] duration-300">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-info-circle text-primary-600 text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-gray-700">Menurut WHO, 1 dari 4 orang di dunia akan terkena gangguan mental atau neurologis pada suatu saat dalam hidup mereka.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section class="py-32 bg-gray-900 text-white parallax" style="background-image: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80')">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="bg-black/40 backdrop-blur-sm p-8 rounded-2xl inline-block animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Anda Tidak Sendirian</h2>
+                <p class="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                    Bicarakan masalah Anda dengan profesional yang berpengalaman. Kesehatan mental sama pentingnya dengan kesehatan fisik.
+                </p>
+                <a href="#jadwal" class="px-8 py-3 bg-white text-primary-600 rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-transform inline-block">
+                    Mulai Konsultasi Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tim Profesional -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-primary-100 text-primary-800 mb-4">Tim Kami</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Bertemu dengan Ahli Kami</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Didukung oleh para profesional berpengalaman yang berdedikasi untuk membantu perjalanan kesehatan mental Anda.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 animate-slide-up card-hover">
+                    <div class="md:flex h-full">
+                        <div class="md:flex-shrink-0 md:w-1/3">
+                            <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Dr. Aulia Rahman">
+                        </div>
+                        <div class="p-8 flex flex-col justify-between">
+                            <div>
+                                <div class="uppercase tracking-wide text-sm text-primary-600 font-semibold">Psikolog Klinis</div>
+                                <h3 class="mt-2 text-xl font-semibold text-gray-900">Dr. Aulia Rahman, M.Psi</h3>
+                                <p class="mt-3 text-gray-600">Spesialis dalam terapi kognitif-perilaku dengan pengalaman lebih dari 8 tahun membantu klien mengatasi kecemasan dan depresi.</p>
+                            </div>
+                            <div class="mt-6 flex space-x-4">
+                                <a href="#" class="text-gray-400 hover:text-primary-600 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-primary-600 transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 animate-slide-up card-hover">
+                    <div class="md:flex h-full">
+                        <div class="md:flex-shrink-0 md:w-1/3">
+                            <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Nadia Putri">
+                        </div>
+                        <div class="p-8 flex flex-col justify-between">
+                            <div>
+                                <div class="uppercase tracking-wide text-sm text-primary-600 font-semibold">Konselor Kesehatan Mental</div>
+                                <h3 class="mt-2 text-xl font-semibold text-gray-900">Nadia Putri, S.Psi</h3>
+                                <p class="mt-3 text-gray-600">Berfokus pada pengembangan diri dan keseimbangan emosi, serta aktif memberikan edukasi di berbagai komunitas.</p>
+                            </div>
+                            <div class="mt-6 flex space-x-4">
+                                <a href="#" class="text-gray-400 hover:text-primary-600 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-primary-600 transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artikel Section -->
+    <section id="artikel" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-primary-100 text-primary-800 mb-4">Artikel</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Wawasan & Panduan Terbaru</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Temukan artikel informatif untuk mendukung perjalanan kesehatan mental Anda.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 animate-fade-in card-hover">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1491841573634-28140fc7ced7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Mengatasi Stres" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>15 Juni 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">5 Cara Efektif Mengatasi Stres Sehari-hari</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Temukan strategi praktis untuk mengelola stres dalam kehidupan sehari-hari dan meningkatkan kesejahteraan mental Anda.</p>
+                        <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-medium group">
+                            Baca Selengkapnya
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 animate-fade-in animation-delay-100 card-hover">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1494172961521-33799ddd43a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80" alt="Kesehatan Mental di Tempat Kerja" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>1 Juni 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>7 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Menjaga Kesehatan Mental di Tempat Kerja</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Panduan lengkap untuk menciptakan lingkungan kerja yang mendukung kesehatan mental dan produktivitas.</p>
+                        <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-medium group">
+                            Baca Selengkapnya
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 animate-fade-in animation-delay-200 card-hover">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80" alt="Meditasi untuk Pemula" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>20 Mei 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>4 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Meditasi untuk Pemula: Langkah demi Langkah</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Pelajari teknik meditasi dasar yang dapat membantu mengurangi kecemasan dan meningkatkan fokus dalam kehidupan sehari-hari.</p>
+                        <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-medium group">
+                            Baca Selengkapnya
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-colors transform hover:-translate-y-0.5 transition-transform">
+                    Lihat Semua Artikel
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni Section -->
+    <section id="testimoni" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-primary-100 text-primary-800 mb-4">Testimoni</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Apa Kata Klien Kami?</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Pengalaman nyata dari mereka yang telah mempercayakan perjalanan kesehatan mentalnya bersama kami.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 animate-fade-in card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Wijaya">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-gray-900">Sarah Wijaya</h4>
+                            <p class="text-sm text-gray-600">Mahasiswa, 23 tahun</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-600 italic">
+                        "Konseling di MentalCare membantu saya mengatasi kecemasan akademik yang saya alami. Psikolognya sangat pengertian dan memberikan tools yang praktis untuk mengelola stres."
+                    </blockquote>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 animate-fade-in animation-delay-100 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Budi Santoso">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-gray-900">Budi Santoso</h4>
+                            <p class="text-sm text-gray-600">Profesional, 35 tahun</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-600 italic">
+                        "Setelah 6 sesi terapi, saya bisa lebih baik dalam mengelola emosi dan hubungan dengan rekan kerja. Pelayanan sangat profesional dan privasi benar-benar terjaga."
+                    </blockquote>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 animate-fade-in animation-delay-200 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dewi Lestari">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-gray-900">Dewi Lestari</h4>
+                            <p class="text-sm text-gray-600">Ibu Rumah Tangga, 40 tahun</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                            <i class="fas fa-star text-amber-400"></i>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-600 italic">
+                        "Sebagai ibu dengan 2 anak, saya sering merasa overwhelmed. Konsultasi online dengan psikolog MentalCare sangat membantu saya menemukan keseimbangan dalam peran sebagai ibu."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jadwal Konsultasi Section -->
+    <section id="jadwal" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <div class="mb-8">
+                        <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-primary-100 text-primary-800 mb-4">Konsultasi</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Jadwalkan Konsultasi Anda</h2>
+                        <p class="text-lg text-gray-600">Isi formulir di bawah ini untuk menjadwalkan konsultasi dengan psikolog pilihan Anda.</p>
+                    </div>
+
+                    <form id="konsultasiForm" class="space-y-6">
+                        <div>
+                            <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Alamat Email</label>
+                            <input type="email" id="email" name="email" placeholder="contoh@gmail.com" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="tanggal_konsultasi" class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
+                                <input type="date" id="tanggal_konsultasi" name="tanggal_konsultasi" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                            </div>
+                            <div>
+                                <label for="waktu_konsultasi" class="block text-sm font-medium text-gray-700 mb-1">Waktu</label>
+                                <input type="time" id="waktu_konsultasi" name="waktu_konsultasi" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="psikolog" class="block text-sm font-medium text-gray-700 mb-1">Pilih Psikolog</label>
+                            <select id="psikolog" name="psikolog" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                                <option value="">-- Pilih Psikolog --</option>
+                                <option value="Dr. Aulia Rahman">Dr. Aulia Rahman, M.Psi</option>
+                                <option value="Nadia Putri">Nadia Putri, S.Psi</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="pesan" class="block text-sm font-medium text-gray-700 mb-1">Pesan/Keluhan</label>
+                            <textarea id="pesan" name="pesan" rows="4" placeholder="Jelaskan keluhan atau topik yang ingin didiskusikan" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 transition-colors"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-transform">
+                                Kirim Jadwal Konsultasi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="animate-fade-in">
+                    <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-2xl p-8 md:p-12 shadow-inner border border-primary-100">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Konsultasi Psikologi" class="w-full max-w-md mx-auto rounded-2xl shadow-lg transform transition hover:scale-105 duration-500">
+                        <div class="mt-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Mengapa Memilih Kami?</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start p-3 rounded-lg bg-white/50 backdrop-blur-sm">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-700">Psikolog berpengalaman dan bersertifikat</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start p-3 rounded-lg bg-white/50 backdrop-blur-sm">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-700">Konsultasi online dan offline yang fleksibel</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start p-3 rounded-lg bg-white/50 backdrop-blur-sm">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-700">Privasi dan kerahasiaan terjamin</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start p-3 rounded-lg bg-white/50 backdrop-blur-sm">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-700">Biaya terjangkau dengan kualitas terbaik</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-primary-100 text-primary-800 mb-4">Pertanyaan Umum</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pertanyaan yang Sering Diajukan</h2>
+                <p class="text-lg text-gray-600">Temukan jawaban atas pertanyaan umum tentang layanan konsultasi kami.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in card-hover">
+                    <button class="w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="text-lg font-medium text-gray-900">Bagaimana cara memulai konsultasi?</span>
+                        <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">Anda bisa memulai dengan mengisi formulir jadwal konsultasi di halaman ini. Setelah mengisi formulir, tim kami akan menghubungi Anda untuk konfirmasi jadwal dan detail pembayaran.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in animation-delay-100 card-hover">
+                    <button class="w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="text-lg font-medium text-gray-900">Berapa biaya konsultasi?</span>
+                        <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">Biaya konsultasi bervariasi tergantung pada jenis layanan dan durasi sesi. Konsultasi standar (50 menit) mulai dari Rp 300.000. Kami juga menawarkan paket konsultasi dengan harga lebih ekonomis.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in animation-delay-200 card-hover">
+                    <button class="w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="text-lg font-medium text-gray-900">Apakah konsultasi online tersedia?</span>
+                        <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">Ya, kami menyediakan layanan konsultasi online melalui platform video call yang aman dan terenkripsi. Anda bisa memilih konsultasi tatap muka atau online saat mengisi formulir pendaftaran.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in animation-delay-300 card-hover">
+                    <button class="w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="text-lg font-medium text-gray-900">Bagaimana dengan kerahasiaan data saya?</span>
+                        <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">Kerahasiaan klien adalah prioritas utama kami. Semua informasi dan diskusi selama sesi konsultasi akan dijaga kerahasiaannya sesuai dengan kode etik psikologi dan peraturan privasi yang berlaku.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-r from-primary-600 to-indigo-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Dapatkan Tips Kesehatan Mental Gratis</h2>
+            <p class="text-lg text-primary-100 mb-8">Berlangganan newsletter kami untuk mendapatkan artikel, tips, dan informasi terbaru tentang kesehatan mental langsung ke email Anda.</p>
+            
+            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                <input type="email" placeholder="Alamat email Anda" required class="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-300 text-gray-900">
+                <button type="submit" class="px-6 py-3 bg-white text-primary-600 rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-lg transform hover:-translate-y-0.5 transition-transform">
+                    Berlangganan
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">🧠</span>
+                        <span class="text-xl font-bold text-white">MentalCare</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-6">
+                        Platform kesehatan mental terpercaya yang menyediakan layanan konsultasi dengan psikolog profesional dan berbagai informasi terkini tentang kesehatan mental.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Layanan</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#jadwal" class="text-sm text-gray-400 hover:text-white transition-colors">Konsultasi Psikolog</a></li>
+                        <li><a href="#artikel" class="text-sm text-gray-400 hover:text-white transition-colors">Artikel Kesehatan Mental</a></li>
+                        <li><a href="#testimoni" class="text-sm text-gray-400 hover:text-white transition-colors">Testimoni Klien</a></li>
+                        <li><a href="#tentang" class="text-sm text-gray-400 hover:text-white transition-colors">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Dukungan</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Pusat Bantuan</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Kontak Kami</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 text-gray-400 mr-3"></i>
+                            <span class="text-sm text-gray-400">Jl. Kesehatan Mental No. 123, Jakarta</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 text-gray-400 mr-3"></i>
+                            <a href="mailto:info@mentalcare.com" class="text-sm text-gray-400 hover:text-white transition-colors">info@mentalcare.com</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 text-gray-400 mr-3"></i>
+                            <a href="tel:+622150955900" class="text-sm text-gray-400 hover:text-white transition-colors">(021) 5095-5900</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock mt-1 text-gray-400 mr-3"></i>
+                            <span class="text-sm text-gray-400">Senin-Jumat: 08:00 - 17:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8">
+                <div class="md:flex md:items-center md:justify-between">
+                    <p class="text-sm text-gray-400 text-center md:text-left">&copy; 2023 MentalCare. All rights reserved.</p>
+                    <div class="mt-4 md:mt-0">
+                        <p class="text-sm text-gray-400 text-center md:text-right">
+                            Dibuat dengan <i class="fas fa-heart text-red-400"></i> untuk kesehatan mental Indonesia
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary-600 text-white p-3 rounded-full shadow-lg hover:bg-primary-700 transition-colors hidden transform hover:-translate-y-1 transition-transform">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (mobileMenuButton && mobileMenu && hamburgerIcon && closeIcon) {
+            mobileMenuButton.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+        }
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // FAQ accordion
+        const faqButtons = document.querySelectorAll('.bg-white.rounded-xl button');
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('transform');
+                icon.classList.toggle('rotate-180');
+                
+                // Close other open items
+                faqButtons.forEach(otherButton => {
+                    if (otherButton !== button) {
+                        const otherContent = otherButton.nextElementSibling;
+                        const otherIcon = otherButton.querySelector('i');
+                        otherContent.classList.add('hidden');
+                        otherIcon.classList.remove('transform', 'rotate-180');
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Form submission animation
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const submitButton = this.querySelector('button[type="submit"]');
+                if (submitButton) {
+                    const originalText = submitButton.textContent;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+                    submitButton.disabled = true;
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        submitButton.textContent = 'Berhasil Dikirim!';
+                        submitButton.classList.remove('bg-primary-600', 'hover:bg-primary-700');
+                        submitButton.classList.add('bg-green-500', 'hover:bg-green-600');
+                        
+                        // Reset after 3 seconds
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('bg-green-500', 'hover:bg-green-600');
+                            submitButton.classList.add('bg-primary-600', 'hover:bg-primary-700');
+                        }, 3000);
+                    }, 1500);
+                }
+            });
+        });
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('opacity-100', 'translate-y-0');
+                }
+            });
+        };
+
+        // Initialize animation state
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.classList.add('opacity-0');
+        });
+        
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            el.classList.add('opacity-0', 'translate-y-10');
+        });
+
+        // Add scroll event listener
+        window.addEventListener('scroll', animateOnScroll);
+        // Trigger once on load
+        animateOnScroll();
+    </script>
+</body>
+</html>
